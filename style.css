@@ -1,0 +1,918 @@
+/* ============================================
+   style.css — Shared Styles
+   Used by all pages in the Code Breaker system.
+   ============================================
+
+   TABLE OF CONTENTS
+   -----------------
+    1.  CSS Variables
+    2.  Reset & Base
+    3.  Navbar
+    4.  Page Wrapper
+    5.  Card & Card Variants
+    6.  Form Elements
+    7.  Buttons
+    8.  Alert Messages
+    9.  Dashboard Layout
+   10.  Tables
+   11.  Status Badges
+   12.  Section Titles
+   13.  Info Row
+   14.  Two-Column Grid
+   15.  Stat Cards & Stat Grid
+   16.  Security Question Box
+   17.  CAPTCHA Box
+   18.  Footer
+   19.  Tab Bar & Tab Pane           (admin.php)
+   20.  Tab Header & Tab Description (admin.php)
+   21.  Form Actions Row
+   22.  Card Actions Header
+   23.  Button Group
+   24.  Cancel Link
+   25.  Label Note & Field Hint
+   26.  Form Footer & Form Note
+   27.  Link Muted
+   28.  Form Disabled State
+   29.  Empty Table Cell
+   30.  Text Utilities
+   31.  Toggle Section               (dashboard.php)
+   32.  Feature List                 (index.php)
+   33.  OTP Page                     (otp_verify.php)
+   34.  Question Display             (reset_password.php, security_question.php)
+   35.  Access Denied Page           (admin.php)
+   ============================================ */
+
+
+/* ============================================
+   1. CSS Variables — edit these to retheme the
+      whole site in one place
+   ============================================ */
+:root {
+    --bg:           #ffffff;
+    --bg-light:     #f8f9fa;
+    --bg-input:     #f8f9fa;   /* input & box backgrounds */
+    --border:       #dee2e6;
+    --border-light: #e9ecef;
+    --accent:       #0066cc;
+    --accent-dim:   rgba(0, 102, 204, 0.3);
+    --danger:       #dc3545;
+    --success:      #28a745;
+    --warning:      #ffc107;
+    --text:         #333333;
+    --text-muted:   #6c757d;
+    --font-main:    Arial, sans-serif;
+    --font-mono:    'Courier New', monospace;
+}
+
+
+/* ============================================
+   2. Reset & Base
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+
+/* ============================================
+   3. Navbar
+   ============================================ */
+.navbar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.navbar nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+
+/* ============================================
+   4. Page Wrapper — centers cards on non-dashboard pages
+   ============================================ */
+.page-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px);
+    padding: 40px 20px;
+}
+
+
+/* ============================================
+   5. Card & Card Variants
+   ============================================ */
+.card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.card-wide  { max-width: 900px; }
+.card-full  { max-width: 100%; }
+.card-home  { max-width: 600px; text-align: center; }
+.card-setup { max-width: 500px; }
+
+/* Edit-user card — highlighted border, bottom spacing */
+.card-edit {
+    max-width: 100%;
+    margin-bottom: 24px;
+    border-color: var(--accent-dim);
+}
+
+/* Card header — icon + title + subtitle */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-header .icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.card-header h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.card-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+
+/* ============================================
+   6. Form Elements
+   ============================================ */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    outline: none;
+    /* Remove number input spinners */
+    -moz-appearance: textfield;
+}
+
+.form-group input::-webkit-outer-spin-button,
+.form-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Generic number input — remove spinners */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+}
+
+.form-group select option {
+    background: var(--bg-card);
+}
+
+
+/* ============================================
+   7. Buttons
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+}
+
+.btn-primary:hover { background: #0052a3; }
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover { background: #c82333; }
+
+.btn-success {
+    background: var(--success);
+    color: white;
+    border: none;
+}
+
+.btn-warning {
+    background: var(--warning);
+    color: #000;
+    border: none;
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 0.82rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.btn-outline:hover {
+    background: var(--accent);
+    color: white;
+}
+
+
+/* ============================================
+   8. Alert Messages
+   ============================================ */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    border-left: 3px solid;
+}
+
+.alert-error {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.alert-success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+/* Add top spacing when an alert appears inside an already-open section */
+.alert-mt { margin-top: 12px; }
+
+
+/* ============================================
+   9. Dashboard Layout
+   ============================================ */
+.dashboard {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.dashboard-header h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.dashboard-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+
+/* ============================================
+   10. Tables
+   ============================================ */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+table thead th {
+    background: var(--bg-light);
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table tbody tr {
+    border-top: 1px solid var(--border);
+}
+
+table tbody tr:hover { background: #f8f9fa; }
+
+table tbody td {
+    padding: 12px 16px;
+    color: var(--text);
+}
+
+/* flex must NOT be on <td> — breaks table hit-testing in some browsers */
+table tbody td.td-actions { vertical-align: middle; }
+
+table tbody td.td-actions .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Inline unlock POST form sitting next to other action buttons */
+.form-inline-unlock {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.form-inline-unlock button {
+    margin: 0;
+    vertical-align: middle;
+}
+
+
+/* ============================================
+   11. Status Badges
+   ============================================ */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-admin   { background: var(--accent); color: white; }
+.badge-user    { background: var(--warning); color: #000; }
+.badge-success { background: var(--success); color: white; }
+.badge-failed  { background: var(--danger); color: white; }
+.badge-locked  { background: var(--warning); color: #000; }
+
+/* Root admin badge — subtle amber highlight */
+.badge-root {
+    background: rgba(255, 171, 64, 0.15);
+    color: var(--warning);
+}
+
+
+/* ============================================
+   12. Section Titles (inside cards)
+   ============================================ */
+.section-title {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* ============================================
+   13. Info Row — used on profile / setup pages
+   ============================================ */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.info-row .label { color: var(--text-muted); }
+
+
+/* ============================================
+   14. Two-Column Grid
+   ============================================ */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .card   { padding: 24px; }
+}
+
+
+/* ============================================
+   15. Stat Cards & Stat Grid
+   ============================================ */
+.stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    padding: 20px;
+}
+
+.stat-card .stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--accent);
+}
+
+.stat-card .stat-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Colored stat number variants */
+.stat-num-warning { color: var(--warning); }
+.stat-num-danger  { color: var(--danger); }
+.stat-num-success { color: var(--success); }
+
+/* Responsive auto-fit grid for the stat row */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+
+/* ============================================
+   16. Security Question Box
+   ============================================ */
+.q-group {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+.q-group small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+
+/* ============================================
+   17. CAPTCHA Box
+   ============================================ */
+.captcha-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.captcha-box .captcha-question {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--accent);
+    flex: 1;
+}
+
+.captcha-box input {
+    width: 80px;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.captcha-box input::-webkit-outer-spin-button,
+.captcha-box input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* ============================================
+   18. Footer
+   ============================================ */
+.footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+}
+
+
+/* ============================================
+   19. Tab Bar & Tab Pane  (admin.php)
+   ============================================ */
+.tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border);
+}
+
+.tab-bar button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.tab-bar button:hover { color: var(--text); }
+
+.tab-bar button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+}
+
+.tab-pane        { display: none; }
+.tab-pane.active { display: block; }
+
+
+/* ============================================
+   20. Tab Header & Tab Description  (admin.php)
+   ============================================ */
+
+/* Section title + action button on the same line */
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Reset section-title when it lives inside a tab-header flex row */
+.tab-header .section-title {
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+/* Muted description line shown below a section title */
+.tab-description {
+    color: var(--text-muted);
+    font-size: 0.83rem;
+    margin-bottom: 16px;
+}
+
+
+/* ============================================
+   21. Form Actions Row
+       Horizontal row of submit / cancel buttons
+   ============================================ */
+.form-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Make one button stretch to fill remaining space */
+.form-actions .btn-flex { flex: 1; }
+
+
+/* ============================================
+   22. Card Actions Header
+       Section title + toggle buttons on one line
+       (dashboard.php account info card)
+   ============================================ */
+.card-actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-actions-header .section-title { margin: 0; }
+
+
+/* ============================================
+   23. Button Group
+       Small cluster of related action buttons
+   ============================================ */
+.btn-group {
+    display: flex;
+    gap: 8px;
+}
+
+
+/* ============================================
+   24. Cancel Link
+       Float-right dismiss link inside a card title bar
+   ============================================ */
+.cancel-link {
+    float: right;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.cancel-link:hover { color: var(--text); }
+
+
+/* ============================================
+   25. Label Note & Field Hint
+   ============================================ */
+
+/* Small note appended inside a <label> (e.g. "(optional)", "(blank = keep)") */
+.label-note {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+/* Helper text rendered below an input */
+.field-hint {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-top: 5px;
+}
+
+
+/* ============================================
+   26. Form Footer & Form Note
+   ============================================ */
+
+/* Centered paragraph at the bottom of a form (e.g. "← back to login") */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Centered muted notice below a form (e.g. "no self-registration") */
+.form-note {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 0.83rem;
+}
+
+
+/* ============================================
+   27. Link Muted
+       Low-emphasis navigation or footer links
+   ============================================ */
+.link-muted {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.link-muted:hover { color: var(--text); }
+
+
+/* ============================================
+   28. Form Disabled State
+       Dims the login form while the account is locked
+   ============================================ */
+.form-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* ============================================
+   29. Empty Table Cell
+       "No records yet" placeholder inside a table row
+   ============================================ */
+.td-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 24px;
+}
+
+
+/* ============================================
+   30. Text Utilities
+   ============================================ */
+.text-muted    { color: var(--text-muted); }
+.text-muted-sm { color: var(--text-muted); font-size: 0.85rem; }
+.text-accent   { color: var(--accent); }
+
+
+/* ============================================
+   31. Toggle Section  (dashboard.php)
+       Collapsible sub-forms inside a card
+   ============================================ */
+.toggle-section {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+
+/* ============================================
+   32. Feature List  (index.php)
+       Security feature checklist on the home page
+   ============================================ */
+.features-list {
+    text-align: left;
+    margin: 24px 0;
+}
+
+.features-intro {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+}
+
+.features-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+}
+
+
+/* ============================================
+   33. OTP Page  (otp_verify.php)
+   ============================================ */
+
+/* "A code was sent to jo***@gmail.com" hint line */
+.otp-hint {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 24px;
+}
+
+.otp-hint strong { color: var(--text); }
+
+/* The OTP code input — large, monospaced, wide spacing */
+.otp-input {
+    letter-spacing: 8px;
+    font-size: 1.4rem;
+    text-align: center;
+    font-family: var(--font-mono);
+}
+
+/* Resend countdown / link wrapper */
+.resend-area { text-align: center; margin-top: 20px; }
+
+.resend-text { color: var(--text-muted); font-size: 0.85rem; }
+
+.resend-link {
+    color: var(--accent);
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.resend-link:hover { text-decoration: underline; }
+
+
+/* ============================================
+   34. Question Display  (reset_password.php, security_question.php)
+   ============================================ */
+
+/* Read-only styled box that shows the security question text */
+.question-display {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+/* Question text paragraph inside a .q-group */
+.question-text {
+    margin-top: 6px;
+    font-size: 1rem;
+}
+
+/* Shown when no security question is set on the account */
+.no-sq-note {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+
+/* ============================================
+   35. Access Denied Page  (admin.php)
+       Standalone die() output — no layout wrapper
+   ============================================ */
+.access-denied {
+    font-family: sans-serif;
+    padding: 40px;
+    background: #0d0f1a;
+    color: #ff4c60;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.access-denied h2 { margin-bottom: 12px; }
+.access-denied p  { margin-bottom: 20px; }
+.access-denied a  { color: #00e5ff; }
