@@ -59,7 +59,7 @@ Your system must include:
  Lock account OR system
  Add cooldown timer (30 seconds before retry)
  Display warning messages
-![image alt](sreenshots/Limited-Attempts-and-Lockout-System.png)
+![image alt](screenshots/Limited-Attempts-and-Lockout-System.png)
 
 
 
