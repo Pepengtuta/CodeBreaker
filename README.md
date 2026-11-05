@@ -50,7 +50,7 @@ Your system must include:
  “What is your favorite color?”
    “What is your pet’s name?”
  Randomize question OR allow user-defined security question
- ![image alt](screenshots\Security%Question%Verification.png)
+ ![Security Question Authentication](screenshots\Security%Question%Verification.png)
 
 ## Task 3: Limited Attempts + Lockout System
 
