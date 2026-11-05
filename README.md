@@ -30,9 +30,9 @@ Your system must include:
 
 
 
-Core Security Features (REQUIRED TASKS)
+## Core Security Features (REQUIRED TASKS)
 
- Task 1: Secure Password Authentication
+##  Task 1: Secure Password Authentication
 
  Ask for username and password
  Password must NOT be stored in plain text (simulate hashing if possible)
@@ -41,7 +41,7 @@ Core Security Features (REQUIRED TASKS)
  Minimum 8 characters
  Must include uppercase, lowercase, number
 
- Task 2: Security Question Verification
+## Task 2: Security Question Verification
 
  After correct login, require a second authentication layer
  Example:
@@ -49,7 +49,7 @@ Core Security Features (REQUIRED TASKS)
    “What is your pet’s name?”
  Randomize question OR allow user-defined security question
 
- Task 3: Limited Attempts + Lockout System
+## Task 3: Limited Attempts + Lockout System
 
  Maximum of 3 login attempts
  After 3 failed attempts:
@@ -60,7 +60,7 @@ Core Security Features (REQUIRED TASKS)
 
 
 
- Task 4: Role-Based Access Control (RBAC)
+## Task 4: Role-Based Access Control (RBAC)
  Create at least 2 roles:
 
    Admin
@@ -78,12 +78,12 @@ Core Security Features (REQUIRED TASKS)
  Prevent users from accessing admin pages manually
 NEW ADVANCED SECURITY FEATURES (REQUIRED)
 
-Task 5: Input Validation & Error Handling
+## Task 5: Input Validation & Error Handling
 
  Prevent invalid inputs (empty fields, wrong formats)
  Display user-friendly error messages
 
-Task 6: Session Management
+## Task 6: Session Management
 
  Once logged in:
 
@@ -91,7 +91,7 @@ Task 6: Session Management
  Add Logout button
  Prevent access to pages after logout
 
-Task 7: Activity Logging
+## Task 7: Activity Logging
 
  Record:
    Login attempts (success/failed)
@@ -124,7 +124,7 @@ Explain:
 
 
 
-Grading Criteria 
+## Grading Criteria 
 
 Criteria          Percentage 
 Functionality         30%        
@@ -135,7 +135,7 @@ Code Quality       15%
 
 
 
-BONUS FEATURES (Optional but HIGHLY ENCOURAGED)
+## BONUS FEATURES (Optional but HIGHLY ENCOURAGED)
 OTP (One-Time Password simulation)
 Email verification simulation
  CAPTCHA (simple math question)
