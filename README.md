@@ -59,7 +59,7 @@ Your system must include:
  Lock account OR system
  Add cooldown timer (30 seconds before retry)
  Display warning messages
-
+![image alt](sreenshots/Limited-Attempts-and-Lockout-System.png)
 
 
 
@@ -80,6 +80,8 @@ Your system must include:
  Limited features only (e.g., view profile)
  Prevent users from accessing admin pages manually
 NEW ADVANCED SECURITY FEATURES (REQUIRED)
+
+![image alt](screenshots/Role-Based-Access-Control-(RBAC).png)
 
 ## Task 5: Input Validation & Error Handling
 
@@ -104,6 +106,9 @@ Display logs in Admin Dashboard
 Task 8: Basic Data Protection
  Do NOT expose passwords in code output
  Hide sensitive data in UI
+
+ ![image alt](screenshots/Activity-Logging.png)
+ ![image alt](screenshots/Activity-Logging2.png)
 
 
 Final Output Requirements
