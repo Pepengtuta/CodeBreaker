@@ -40,7 +40,7 @@ Your system must include:
  Enforce strong password rules:
  Minimum 8 characters
  Must include uppercase, lowercase, number
-![Secure Password Authentication](screenshots\Secure Password Authentication.png)
+![Secure Password Authentication](screenshots/Secure%20Password%20Authentication.png)
 
 
 ## Task 2: Security Question Verification
