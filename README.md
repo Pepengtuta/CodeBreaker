@@ -40,6 +40,8 @@ Your system must include:
  Enforce strong password rules:
  Minimum 8 characters
  Must include uppercase, lowercase, number
+![Secure Password Authentication](screenshots\Secure Password Authentication.png)
+
 
 ## Task 2: Security Question Verification
 
@@ -48,6 +50,7 @@ Your system must include:
  “What is your favorite color?”
    “What is your pet’s name?”
  Randomize question OR allow user-defined security question
+ ![image alt]( )
 
 ## Task 3: Limited Attempts + Lockout System
 
